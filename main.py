@@ -6,4 +6,4 @@ st.title("Google Drive Video Viewer")
 file_id = "15UwHNLatFJb8n4CUi0ciXM4nFsLMVhRg"
 preview_url = f"https://drive.google.com/file/d/{file_id}/preview"
 
-st.components.v1.iframe(preview_url, width=1920, height=1080)
+st.components.v1.iframe(preview_url, width=1080, height=1920)
