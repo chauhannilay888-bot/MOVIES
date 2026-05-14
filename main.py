@@ -24,8 +24,6 @@ results = drive_service.files().list(
 
 items = results.get("files", [])
 
-st.title("Google Drive Video Viewer")
-
 import streamlit as st
 
 st.title("Google Drive Video Viewer")
