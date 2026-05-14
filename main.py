@@ -26,11 +26,12 @@ items = results.get("files", [])
 
 st.title("Google Drive Video Viewer")
 
-if items:
-    file_id = items[0]["id"]
-    # Use preview link instead of uc link
-    video_url = f"https://drive.google.com/file/d/{file_id}/preview"
-    st.success(f"Found video: {items[0]['name']}")
-    st.video(video_url)
-else:
-    st.warning("Target video not found in the specified folder.")
+import streamlit as st
+
+st.title("Google Drive Video Viewer")
+
+# Direct preview link for your video
+video_url = "https://drive.google.com/file/d/15UwHNLatFJb8n4CUi0ciXM4nFsLMVhRg/preview"
+
+# Display the video
+st.video(video_url)
