@@ -1,87 +1,60 @@
 import streamlit as st
 
+# Page setup
 st.set_page_config(
-    page_title="Drive Video",
+    page_title="Google Drive Video Viewer",
     layout="wide"
 )
 
-file_id = "15UwHNLatFJb8n4CUi0ciXM4nFsLMVhRg"
-preview_url = f"https://drive.google.com/file/d/{file_id}/preview"
-
+# Minimal clean CSS
 st.markdown("""
 <style>
-
-/* Remove Streamlit spacing */
+/* Remove Streamlit padding issues */
 .block-container {
-    padding: 0 !important;
-    margin: 0 !important;
-    max-width: 100% !important;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
-/* Fullscreen wrapper */
-.video-shell {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+/* Responsive video wrapper */
+.video-wrapper {
+    width: 100%;
+    height: 90vh;
     overflow: hidden;
-    background: black;
+    border-radius: 12px;
 }
 
-/* Zoom iframe slightly to hide controls */
-.video-shell iframe {
-    position: absolute;
-
-    top: -60px;     /* hides top controls */
-    left: 0;
-
-    width: 100%;
-    height: calc(100% + 120px);
-
-    border: none;
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .video-wrapper {
+        height: 65vh;
+    }
 }
-
-/* Bottom overlay to hide timeline */
-.bottom-mask {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    height: 80px;
-
-    background: black;
-    z-index: 9999;
-}
-
-/* Optional top overlay */
-.top-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 60px;
-
-    background: black;
-    z-index: 9999;
-}
-
 </style>
 """, unsafe_allow_html=True)
 
+st.title("Google Drive Video Viewer")
+
+# Google Drive File ID
+file_id = "15UwHNLatFJb8n4CUi0ciXM4nFsLMVhRg"
+
+# IMPORTANT:
+# Use /preview directly in iframe
+preview_url = f"https://drive.google.com/file/d/{file_id}/preview"
+
+# Native iframe
 st.markdown(
     f"""
-    <div class="video-shell">
-
+    <div class="video-wrapper">
         <iframe
             src="{preview_url}"
+            width="100%"
+            height="100%"
             allow="autoplay; fullscreen"
-            allowfullscreen>
+            allowfullscreen
+            frameborder="0">
         </iframe>
-
-        <div class="top-mask"></div>
-        <div class="bottom-mask"></div>
-
     </div>
     """,
     unsafe_allow_html=True
