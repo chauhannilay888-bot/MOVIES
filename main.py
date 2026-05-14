@@ -28,7 +28,8 @@ st.title("Google Drive Video Viewer")
 
 if items:
     file_id = items[0]["id"]
-    video_url = f"https://drive.google.com/uc?id={file_id}"
+    # Use preview link instead of uc link
+    video_url = f"https://drive.google.com/file/d/{file_id}/preview"
     st.success(f"Found video: {items[0]['name']}")
     st.video(video_url)
 else:
