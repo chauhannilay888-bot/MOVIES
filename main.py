@@ -1,59 +1,63 @@
 import streamlit as st
 
-# Page setup
 st.set_page_config(
-    page_title="Google Drive Video Viewer",
+    page_title="Video Player",
     layout="wide"
 )
 
-# Minimal clean CSS
+# Remove Streamlit spacing completely
 st.markdown("""
 <style>
-/* Remove Streamlit padding issues */
+
+/* Remove default Streamlit padding */
 .block-container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0rem !important;
+    max-width: 100% !important;
+}
+
+/* Remove top menu spacing */
+header, footer {
+    visibility: hidden;
+}
+
+/* Full width container */
+.main {
+    padding: 0rem !important;
 }
 
 /* Responsive video wrapper */
-.video-wrapper {
-    width: 100%;
-    height: 90vh;
+.video-container {
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-    border-radius: 12px;
+    margin: 0;
+    padding: 0;
 }
 
-/* Mobile optimization */
-@media (max-width: 768px) {
-    .video-wrapper {
-        height: 65vh;
-    }
+/* iframe full size */
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
-st.title("Google Drive Video Viewer")
-
-# Google Drive File ID
+# Google Drive File
 file_id = "15UwHNLatFJb8n4CUi0ciXM4nFsLMVhRg"
 
-# IMPORTANT:
-# Use /preview directly in iframe
+# Better embed URL
 preview_url = f"https://drive.google.com/file/d/{file_id}/preview"
 
-# Native iframe
+# Fullscreen capable iframe
 st.markdown(
     f"""
-    <div class="video-wrapper">
+    <div class="video-container">
         <iframe
             src="{preview_url}"
-            width="100%"
-            height="100%"
             allow="autoplay; fullscreen"
-            allowfullscreen
-            frameborder="0">
+            allowfullscreen>
         </iframe>
     </div>
     """,
