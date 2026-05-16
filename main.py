@@ -27,5 +27,5 @@ st.components.v1.html(
         <iframe src="{video_url}" allow="autoplay; fullscreen"></iframe>
     </div>
     """,
-    height=600,
+    height=600, width=800
 )
